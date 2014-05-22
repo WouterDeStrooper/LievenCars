@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LievenCarsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="LievenCarsModelStoreContainer">
+          <EntitySet Name="Afbeelding" EntityType="LievenCarsModel.Store.Afbeelding" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Afdeling" EntityType="LievenCarsModel.Store.Afdeling" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Artikel" EntityType="LievenCarsModel.Store.Artikel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contact" EntityType="LievenCarsModel.Store.Contact" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Onderverdeling" EntityType="LievenCarsModel.Store.Onderverdeling" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="LievenCarsModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfile" EntityType="LievenCarsModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Membership" EntityType="LievenCarsModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="LievenCarsModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Roles" EntityType="LievenCarsModel.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="LievenCarsModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Afbeelding_Artikel" Association="LievenCarsModel.Store.FK_Afbeelding_Artikel">
+            <End Role="Artikel" EntitySet="Artikel" />
+            <End Role="Afbeelding" EntitySet="Afbeelding" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artikel_Contact" Association="LievenCarsModel.Store.FK_Artikel_Contact">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artikel_Onderverdeling" Association="LievenCarsModel.Store.FK_Artikel_Onderverdeling">
+            <End Role="Onderverdeling" EntitySet="Onderverdeling" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artikel_User" Association="LievenCarsModel.Store.FK_Artikel_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Onderverdeling_Afdeling" Association="LievenCarsModel.Store.FK_Onderverdeling_Afdeling">
+            <End Role="Afdeling" EntitySet="Afdeling" />
+            <End Role="Onderverdeling" EntitySet="Onderverdeling" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleId" Association="LievenCarsModel.Store.fk_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Contact" Association="LievenCarsModel.Store.FK_User_Contact">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserId" Association="LievenCarsModel.Store.fk_UserId">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Afbeelding">
+          <Key>
+            <PropertyRef Name="AfbeeldingId" />
+          </Key>
+          <Property Name="AfbeeldingId" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Afdeling">
+          <Key>
+            <PropertyRef Name="AfdelingId" />
+          </Key>
+          <Property Name="AfdelingId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Artikel">
+          <Key>
+            <PropertyRef Name="ArtikelId" />
+          </Key>
+          <Property Name="ArtikelId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Inhoud" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Prijs" Type="money" />
+          <Property Name="Publish" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Adres" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Telefoon" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ExtraTelefoon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Onderverdeling">
+          <Key>
+            <PropertyRef Name="OnderverdelingId" />
+          </Key>
+          <Property Name="OnderverdelingId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="56" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsConfirmed" Type="bit" />
+          <Property Name="LastPasswordFailureDate" Type="datetime" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordChangedDate" Type="datetime" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Afbeelding_Artikel">
+          <End Role="Artikel" Type="LievenCarsModel.Store.Artikel" Multiplicity="1" />
+          <End Role="Afbeelding" Type="LievenCarsModel.Store.Afbeelding" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Artikel">
+              <PropertyRef Name="ArtikelId" />
+            </Principal>
+            <Dependent Role="Afbeelding">
+              <PropertyRef Name="AfbeeldingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artikel_Contact">
+          <End Role="Contact" Type="LievenCarsModel.Store.Contact" Multiplicity="1" />
+          <End Role="Artikel" Type="LievenCarsModel.Store.Artikel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="ArtikelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artikel_Onderverdeling">
+          <End Role="Onderverdeling" Type="LievenCarsModel.Store.Onderverdeling" Multiplicity="1" />
+          <End Role="Artikel" Type="LievenCarsModel.Store.Artikel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Onderverdeling">
+              <PropertyRef Name="OnderverdelingId" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="ArtikelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artikel_User">
+          <End Role="User" Type="LievenCarsModel.Store.User" Multiplicity="1" />
+          <End Role="Artikel" Type="LievenCarsModel.Store.Artikel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="ArtikelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Onderverdeling_Afdeling">
+          <End Role="Afdeling" Type="LievenCarsModel.Store.Afdeling" Multiplicity="1" />
+          <End Role="Onderverdeling" Type="LievenCarsModel.Store.Onderverdeling" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Afdeling">
+              <PropertyRef Name="AfdelingId" />
+            </Principal>
+            <Dependent Role="Onderverdeling">
+              <PropertyRef Name="OnderverdelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleId">
+          <End Role="webpages_Roles" Type="LievenCarsModel.Store.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="LievenCarsModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Contact">
+          <End Role="Contact" Type="LievenCarsModel.Store.Contact" Multiplicity="1" />
+          <End Role="User" Type="LievenCarsModel.Store.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserId">
+          <End Role="UserProfile" Type="LievenCarsModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="LievenCarsModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LievenCarsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LievenCarsEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Afbeelding" EntityType="LievenCarsModel.Afbeelding" />
+          <EntitySet Name="Afdeling" EntityType="LievenCarsModel.Afdeling" />
+          <EntitySet Name="Artikel" EntityType="LievenCarsModel.Artikel" />
+          <EntitySet Name="Contact" EntityType="LievenCarsModel.Contact" />
+          <EntitySet Name="Onderverdeling" EntityType="LievenCarsModel.Onderverdeling" />
+          <EntitySet Name="User" EntityType="LievenCarsModel.User" />
+          <EntitySet Name="UserProfile" EntityType="LievenCarsModel.UserProfile" />
+          <EntitySet Name="webpages_Membership" EntityType="LievenCarsModel.webpages_Membership" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="LievenCarsModel.webpages_OAuthMembership" />
+          <EntitySet Name="webpages_Roles" EntityType="LievenCarsModel.webpages_Roles" />
+          <AssociationSet Name="FK_Afbeelding_Artikel" Association="LievenCarsModel.FK_Afbeelding_Artikel">
+            <End Role="Artikel" EntitySet="Artikel" />
+            <End Role="Afbeelding" EntitySet="Afbeelding" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Onderverdeling_Afdeling" Association="LievenCarsModel.FK_Onderverdeling_Afdeling">
+            <End Role="Afdeling" EntitySet="Afdeling" />
+            <End Role="Onderverdeling" EntitySet="Onderverdeling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artikel_Contact" Association="LievenCarsModel.FK_Artikel_Contact">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artikel_Onderverdeling" Association="LievenCarsModel.FK_Artikel_Onderverdeling">
+            <End Role="Onderverdeling" EntitySet="Onderverdeling" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artikel_User" Association="LievenCarsModel.FK_Artikel_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Contact" Association="LievenCarsModel.FK_User_Contact">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="webpages_UsersInRoles" Association="LievenCarsModel.webpages_UsersInRoles">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Afbeelding">
+          <Key>
+            <PropertyRef Name="AfbeeldingId" />
+          </Key>
+          <Property Name="AfbeeldingId" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Artikel" Relationship="LievenCarsModel.FK_Afbeelding_Artikel" FromRole="Afbeelding" ToRole="Artikel" />
+        </EntityType>
+        <EntityType Name="Afdeling">
+          <Key>
+            <PropertyRef Name="AfdelingId" />
+          </Key>
+          <Property Name="AfdelingId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Onderverdeling" Relationship="LievenCarsModel.FK_Onderverdeling_Afdeling" FromRole="Afdeling" ToRole="Onderverdeling" />
+        </EntityType>
+        <EntityType Name="Artikel">
+          <Key>
+            <PropertyRef Name="ArtikelId" />
+          </Key>
+          <Property Name="ArtikelId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Inhoud" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Prijs" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Publish" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Afbeelding" Relationship="LievenCarsModel.FK_Afbeelding_Artikel" FromRole="Artikel" ToRole="Afbeelding" />
+          <NavigationProperty Name="Contact" Relationship="LievenCarsModel.FK_Artikel_Contact" FromRole="Artikel" ToRole="Contact" />
+          <NavigationProperty Name="Onderverdeling" Relationship="LievenCarsModel.FK_Artikel_Onderverdeling" FromRole="Artikel" ToRole="Onderverdeling" />
+          <NavigationProperty Name="User" Relationship="LievenCarsModel.FK_Artikel_User" FromRole="Artikel" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Adres" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Telefoon" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ExtraTelefoon" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Artikel" Relationship="LievenCarsModel.FK_Artikel_Contact" FromRole="Contact" ToRole="Artikel" />
+          <NavigationProperty Name="User" Relationship="LievenCarsModel.FK_User_Contact" FromRole="Contact" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Onderverdeling">
+          <Key>
+            <PropertyRef Name="OnderverdelingId" />
+          </Key>
+          <Property Name="OnderverdelingId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Afdeling" Relationship="LievenCarsModel.FK_Onderverdeling_Afdeling" FromRole="Onderverdeling" ToRole="Afdeling" />
+          <NavigationProperty Name="Artikel" Relationship="LievenCarsModel.FK_Artikel_Onderverdeling" FromRole="Onderverdeling" ToRole="Artikel" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Artikel" Relationship="LievenCarsModel.FK_Artikel_User" FromRole="User" ToRole="Artikel" />
+          <NavigationProperty Name="Contact" Relationship="LievenCarsModel.FK_User_Contact" FromRole="User" ToRole="Contact" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="webpages_Roles" Relationship="LievenCarsModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="IsConfirmed" Type="Boolean" />
+          <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="UserProfile" Relationship="LievenCarsModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_Afbeelding_Artikel">
+          <End Role="Artikel" Type="LievenCarsModel.Artikel" Multiplicity="1" />
+          <End Role="Afbeelding" Type="LievenCarsModel.Afbeelding" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Artikel">
+              <PropertyRef Name="ArtikelId" />
+            </Principal>
+            <Dependent Role="Afbeelding">
+              <PropertyRef Name="AfbeeldingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Onderverdeling_Afdeling">
+          <End Role="Afdeling" Type="LievenCarsModel.Afdeling" Multiplicity="1" />
+          <End Role="Onderverdeling" Type="LievenCarsModel.Onderverdeling" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Afdeling">
+              <PropertyRef Name="AfdelingId" />
+            </Principal>
+            <Dependent Role="Onderverdeling">
+              <PropertyRef Name="OnderverdelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artikel_Contact">
+          <End Role="Contact" Type="LievenCarsModel.Contact" Multiplicity="1" />
+          <End Role="Artikel" Type="LievenCarsModel.Artikel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="ArtikelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artikel_Onderverdeling">
+          <End Role="Onderverdeling" Type="LievenCarsModel.Onderverdeling" Multiplicity="1" />
+          <End Role="Artikel" Type="LievenCarsModel.Artikel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Onderverdeling">
+              <PropertyRef Name="OnderverdelingId" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="ArtikelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artikel_User">
+          <End Role="User" Type="LievenCarsModel.User" Multiplicity="1" />
+          <End Role="Artikel" Type="LievenCarsModel.Artikel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="ArtikelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Contact">
+          <End Role="Contact" Type="LievenCarsModel.Contact" Multiplicity="1" />
+          <End Role="User" Type="LievenCarsModel.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="webpages_UsersInRoles">
+          <End Role="webpages_Roles" Type="LievenCarsModel.webpages_Roles" Multiplicity="*" />
+          <End Role="UserProfile" Type="LievenCarsModel.UserProfile" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LievenCarsModelStoreContainer" CdmEntityContainer="LievenCarsEntities">
+          <EntitySetMapping Name="Afbeelding">
+            <EntityTypeMapping TypeName="LievenCarsModel.Afbeelding">
+              <MappingFragment StoreEntitySet="Afbeelding">
+                <ScalarProperty Name="AfbeeldingId" ColumnName="AfbeeldingId" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Afdeling">
+            <EntityTypeMapping TypeName="LievenCarsModel.Afdeling">
+              <MappingFragment StoreEntitySet="Afdeling">
+                <ScalarProperty Name="AfdelingId" ColumnName="AfdelingId" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artikel">
+            <EntityTypeMapping TypeName="LievenCarsModel.Artikel">
+              <MappingFragment StoreEntitySet="Artikel">
+                <ScalarProperty Name="ArtikelId" ColumnName="ArtikelId" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Inhoud" ColumnName="Inhoud" />
+                <ScalarProperty Name="Prijs" ColumnName="Prijs" />
+                <ScalarProperty Name="Publish" ColumnName="Publish" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="LievenCarsModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
+                <ScalarProperty Name="ExtraTelefoon" ColumnName="ExtraTelefoon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Onderverdeling">
+            <EntityTypeMapping TypeName="LievenCarsModel.Onderverdeling">
+              <MappingFragment StoreEntitySet="Onderverdeling">
+                <ScalarProperty Name="OnderverdelingId" ColumnName="OnderverdelingId" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="LievenCarsModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfile">
+            <EntityTypeMapping TypeName="LievenCarsModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Membership">
+            <EntityTypeMapping TypeName="LievenCarsModel.webpages_Membership">
+              <MappingFragment StoreEntitySet="webpages_Membership">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_OAuthMembership">
+            <EntityTypeMapping TypeName="LievenCarsModel.webpages_OAuthMembership">
+              <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="LievenCarsModel.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="LievenCarsModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+            <EndProperty Name="webpages_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
